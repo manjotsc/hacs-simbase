@@ -1,12 +1,8 @@
 {
-<<<<<<< HEAD
   "name": "Simbase IoT SIM Management",
   "render_readme": true,
   "domains": ["sensor", "binary_sensor", "switch", "button"],
   "iot_class": "cloud_polling",
   "homeassistant": "2024.1.0",
   "content_in_root": false
-=======
-  "name": "Simbase IoT SIM Management"
->>>>>>> 6548ab47f801000a71ae192ad6d621caa74cce0d
 }
