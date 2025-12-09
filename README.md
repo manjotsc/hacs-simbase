@@ -39,7 +39,7 @@ A Home Assistant custom integration for [Simbase](https://www.simbase.com/) IoT 
 1. Open **HACS** in Home Assistant  
 2. Go to **Integrations**  
 3. Open **Menu → Custom repositories**  
-4. Add:
+4. Add: https://github.com/manjotsc/hacs-simbase
 5. Choose category: **Integration**  
 6. Install **Simbase**  
 7. Restart Home Assistant  
