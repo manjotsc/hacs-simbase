@@ -88,7 +88,7 @@ Each SIM card appears as a device with the following entities:
 | Hardware | Device hardware model |
 | IMEI | Device IMEI number |
 | Phone Number | MSISDN phone number |
-| IP Address | Public or private IP address |
+| IP Address | * Only IF Static IP |
 
 #### Binary Sensors
 
