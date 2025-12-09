@@ -8,13 +8,20 @@ A Home Assistant custom integration for [Simbase](https://www.simbase.com/) IoT 
 
 ---
 
+> ⚠️ **Disclaimer**  
+> This is an **unofficial, community-developed project** and is **not affiliated with, endorsed by, or supported by Simbase**.  
+>  
+> All product names, logos, and trademarks belong to their respective owners. API usage is subject to Simbase’s terms and conditions.
+
+---
+
 ## Features
 
 - **SIM Card Monitoring** – Track data usage, status, costs, SMS counts, and more  
 - **Account Overview** – See totals across all SIM cards in one place  
 - **Activation Control** – Enable/disable individual SIMs or all SIMs at once  
 - **SMS Support** – Send SMS messages to your SIM cards  
-- **Configurable Sensors** – Choose which sensors to enable during setup  
+- **Configurable Sensors** – Choose which sensors to enable  
 - **Real-time Updates** – Configurable polling interval  
 
 ---
@@ -27,122 +34,93 @@ A Home Assistant custom integration for [Simbase](https://www.simbase.com/) IoT 
 
 ## Installation
 
-### ✅ HACS (Recommended)
+### 🔧 HACS (Recommended)
 
 1. Open **HACS** in Home Assistant  
-2. Click on **Integrations**  
-3. Click the **three dots menu** (top right)  
-4. Select **Custom repositories**  
-5. Add this repository URL:
+2. Go to **Integrations**  
+3. Open **Menu → Custom repositories**  
+4. Add:
+5. Choose category: **Integration**  
+6. Install **Simbase**  
+7. Restart Home Assistant  
+
+---
+
+### 📦 Manual Installation
+
+1. Download the latest release:  
+https://github.com/manjotsc/hacs-simbase/releases  
+2. Extract `simbase` into:
+   3. Restart Home Assistant  
+
+---
 
 ## Configuration
 
-### 🔑 Getting Your API Key
+### API Key
 
-1. Log in to your [Simbase Dashboard](https://dashboard.simbase.com/)  
-2. Navigate to **Settings → API Key**  
-3. Copy your API key (**Admin privileges required**)  
+1. Log into your [Simbase Dashboard](https://dashboard.simbase.com/)  
+2. Go to **Settings → API Key**  
+3. Copy your API token  
 
 ---
 
-### 🛠 Setup
+### Adding the Integration
 
 1. Go to **Settings → Devices & Services**  
-2. Click **+ Add Integration**  
+2. Click **Add Integration**  
 3. Search for **Simbase**  
-4. Enter your **Simbase API key**  
-5. Select which sensors you want to enable  
-6. Click **Submit**  
-
----
-
-### ⚙️ Options
-
-After setup, you can modify options at any time:
-
-1. Go to **Settings → Devices & Services**  
-2. Find **Simbase** and click **Configure**  
-3. Adjust:
-   - **Update interval** (60–3600 seconds, default: 300)
-   - **Enabled sensors**
-   - **Enabled binary sensors**
-   - **Enable activation switch**
+4. Enter your API key  
+5. Select optional sensors and features  
 
 ---
 
 ## Entities
 
-### 📱 Per-SIM Device
+### Per-SIM Device
 
-Each SIM card appears as a device with the following entities:
+Includes:  
+- Data usage  
+- Status  
+- Monthly cost  
+- SMS totals  
+- Coverage  
+- Hardware  
+- IMEI  
+- MSISDN  
+- Static IP (if available)  
 
----
+Binary sensors:  
+- Online status  
 
-### 🔍 Sensors
-
-| Sensor | Description |
-|--------|-------------|
-| Data Usage | Current month data usage in MB |
-| Status | SIM state (enabled / disabled / active / inactive) |
-| Coverage | Coverage plan name |
-| Monthly Cost | Current month cost in USD |
-| SMS Total | Total SMS this month |
-| SMS Sent | SMS sent (MO) |
-| SMS Received | SMS received (MT) |
-| Hardware | Device hardware model |
-| IMEI | Device IMEI number |
-| Phone Number | MSISDN phone number |
-| IP Address | Static IP ONLY |
+Controls:  
+- SIM activation switch  
 
 ---
 
-### 🔘 Binary Sensors
+## Account Overview
 
-| Sensor | Description |
-|--------|-------------|
-| Online | Whether the SIM is enabled/active |
+Global entities:  
+- Total SIM count  
+- Active SIMs  
+- Inactive SIMs  
+- Total data usage  
+- Total cost  
+- SMS metrics  
 
----
-
-### 🎛 Controls
-
-| Entity | Description |
-|--------|-------------|
-| Active Switch | Toggle to activate/deactivate the SIM card |
-
----
-
-## 🏢 Simbase Account Device
-
-A special device that shows account-wide information:
-
----
-
-### 📊 Sensors
-
-| Sensor | Description |
-|--------|-------------|
-| Account Balance | Account balance |
-| Total SIMs | Total number of SIM cards |
-| Active SIMs | Number of enabled/active SIMs |
-| Inactive SIMs | Number of disabled/inactive SIMs |
-| Total Data Usage | Combined data usage |
-| Total Monthly Cost | Combined monthly cost |
-| Total SMS Sent | SMS sent across all SIMs |
-| Total SMS Received | SMS received across all SIMs |
-| Total SMS | Combined SMS total |
-
----
-
-### 🧨 Controls
-
-| Entity | Description |
-|--------|-------------|
-| Activate All SIMs | Activate all inactive SIMs |
-| Deactivate All SIMs | Deactivate all active SIMs |
+Controls:  
+- Activate all SIMs  
+- Deactivate all SIMs  
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License**. See [LICENSE](LICENSE).
+
+## Trademark Notice
+
+Simbase® and all related names are trademarks of their respective owners.  
+This project makes no claim to those marks.
+
+
