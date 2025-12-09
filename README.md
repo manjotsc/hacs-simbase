@@ -46,12 +46,11 @@ A Home Assistant custom integration for [Simbase](https://www.simbase.com/) IoT 
 
 ---
 
-### 📦 Manual Installation
+### Manual Installation
 
-1. Download the latest release:  
-https://github.com/manjotsc/hacs-simbase/releases  
-2. Extract `simbase` into:
-   3. Restart Home Assistant  
+1. Download the latest release from [GitHub Releases](https://github.com/manjotsc/hacs-simbase/releases)
+2. Extract and copy `custom_components/simbase` folder to your Home Assistant `config/custom_components/` directory
+3. Restart Home Assistant  
 
 ---
 
