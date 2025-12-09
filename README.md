@@ -1,7 +1,7 @@
 # Simbase IoT SIM Management for Home Assistant
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![GitHub Release](https://img.shields.io/github/v/release/your-username/hacs-simbase)](https://github.com/manjotsc/hacs-simbase/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/manjotsc/hacs-simbase)](https://github.com/manjotsc/hacs-simbase/releases)
 [![License](https://img.shields.io/github/license/manjotsc/hacs-simbase)](LICENSE)
 
 A Home Assistant custom integration for [Simbase](https://www.simbase.com/) IoT SIM card management. Monitor and control your IoT SIM cards directly from Home Assistant.
