@@ -41,3 +41,25 @@ send_sms:
       selector:
         text:
           multiline: true
+
+read_sms:
+  name: Read SMS
+  description: Read SMS messages from a SIM card
+  fields:
+    device_id:
+      name: SIM Card
+      description: The SIM card to read SMS from
+      required: true
+      selector:
+        device:
+          integration: simbase
+    limit:
+      name: Limit
+      description: Maximum number of messages to retrieve
+      required: false
+      default: 50
+      selector:
+        number:
+          min: 1
+          max: 100
+          mode: slider

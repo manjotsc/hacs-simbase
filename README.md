@@ -80,9 +80,10 @@ Monitor and control your [Simbase](https://www.simbase.com/) IoT SIM cards direc
 
 | Service | Description |
 |---------|-------------|
-| `simbase.activate_sim` | Activate a SIM by ICCID |
-| `simbase.deactivate_sim` | Deactivate a SIM by ICCID |
-| `simbase.send_sms` | Send SMS to a SIM |
+| `simbase.activate_sim` | Activate a SIM card |
+| `simbase.deactivate_sim` | Deactivate a SIM card |
+| `simbase.send_sms` | Send SMS to a SIM card |
+| `simbase.read_sms` | Read SMS messages from a SIM card |
 
 ## Known Limitations
 

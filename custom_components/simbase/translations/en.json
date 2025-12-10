@@ -181,6 +181,20 @@
           "description": "The message content to send"
         }
       }
+    },
+    "read_sms": {
+      "name": "Read SMS",
+      "description": "Read SMS messages from a SIM card.",
+      "fields": {
+        "device_id": {
+          "name": "SIM Card",
+          "description": "The SIM card to read SMS from"
+        },
+        "limit": {
+          "name": "Limit",
+          "description": "Maximum number of messages to retrieve"
+        }
+      }
     }
   }
 }

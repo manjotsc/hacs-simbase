@@ -5,7 +5,7 @@ import logging
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_API_KEY, CONF_SCAN_INTERVAL, Platform
-from homeassistant.core import HomeAssistant, ServiceCall
+from homeassistant.core import HomeAssistant, ServiceCall, SupportsResponse
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
@@ -16,6 +16,7 @@ from .const import (
     SERVICE_ACTIVATE_SIM,
     SERVICE_DEACTIVATE_SIM,
     SERVICE_SEND_SMS,
+    SERVICE_READ_SMS,
 )
 from .coordinator import SimbaseDataUpdateCoordinator
 
@@ -130,6 +131,23 @@ async def _async_setup_services(hass: HomeAssistant) -> None:
                 return
         _LOGGER.error("SIM card with ICCID %s not found", iccid)
 
+    async def async_read_sms(call: ServiceCall) -> dict:
+        """Read SMS messages from a SIM card."""
+        device_id = call.data["device_id"]
+        limit = call.data.get("limit", 50)
+        iccid = _get_iccid_from_device(hass, device_id)
+        if not iccid:
+            _LOGGER.error("Could not find ICCID for device %s", device_id)
+            return {"success": False, "error": "Device not found", "messages": []}
+        for entry_data in hass.data[DOMAIN].values():
+            api_client: SimbaseApiClient = entry_data["api_client"]
+            coordinator: SimbaseDataUpdateCoordinator = entry_data["coordinator"]
+            if coordinator.get_simcard(iccid):
+                messages = await api_client.get_sms(iccid, limit=limit)
+                return {"success": True, "iccid": iccid, "messages": messages, "count": len(messages)}
+        _LOGGER.error("SIM card with ICCID %s not found", iccid)
+        return {"success": False, "error": "SIM not found", "messages": []}
+
     # Only register if not already registered
     if not hass.services.has_service(DOMAIN, SERVICE_ACTIVATE_SIM):
         hass.services.async_register(
@@ -150,4 +168,12 @@ async def _async_setup_services(hass: HomeAssistant) -> None:
             DOMAIN,
             SERVICE_SEND_SMS,
             async_send_sms,
+        )
+
+    if not hass.services.has_service(DOMAIN, SERVICE_READ_SMS):
+        hass.services.async_register(
+            DOMAIN,
+            SERVICE_READ_SMS,
+            async_read_sms,
+            supports_response=SupportsResponse.OPTIONAL,
         )

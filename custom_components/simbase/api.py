@@ -255,6 +255,30 @@ class SimbaseApiClient:
             json_data={"message": message},
         )
 
+    async def get_sms(self, iccid: str, limit: int = 50) -> list[dict[str, Any]]:
+        """Get SMS messages for a SIM card."""
+        try:
+            response = await self._request(
+                "GET",
+                f"{API_ENDPOINT_SIMCARDS}/{iccid}/sms",
+                params={"limit": limit},
+            )
+            # Handle different response formats
+            if isinstance(response, list):
+                return response
+            elif isinstance(response, dict):
+                return (
+                    response.get("data")
+                    or response.get("messages")
+                    or response.get("sms")
+                    or response.get("items")
+                    or []
+                )
+            return []
+        except SimbaseApiError as err:
+            _LOGGER.debug("Could not fetch SMS for %s: %s", iccid, err)
+            return []
+
     async def update_simcard(
         self,
         iccid: str,
