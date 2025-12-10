@@ -27,6 +27,7 @@ SENSOR_NETWORK = "network"
 SENSOR_SIGNAL_STRENGTH = "signal_strength"
 SENSOR_CONNECTION_TYPE = "connection_type"
 SENSOR_IP_ADDRESS = "ip_address"
+SENSOR_ICCID = "iccid"
 SENSOR_IMEI = "imei"
 SENSOR_MSISDN = "msisdn"
 SENSOR_PLAN = "plan"
@@ -52,6 +53,7 @@ AVAILABLE_SENSORS = {
     SENSOR_SMS_SENT: "SMS Sent",
     SENSOR_SMS_RECEIVED: "SMS Received",
     SENSOR_HARDWARE: "Hardware",
+    SENSOR_ICCID: "ICCID",
     SENSOR_IMEI: "IMEI",
     SENSOR_MSISDN: "Phone Number (MSISDN)",
     SENSOR_IP_ADDRESS: "IP Address",

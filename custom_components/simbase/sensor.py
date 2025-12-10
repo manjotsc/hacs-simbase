@@ -159,6 +159,12 @@ SENSOR_DESCRIPTIONS: tuple[SimbaseSensorEntityDescription, ...] = (
         },
     ),
     SimbaseSensorEntityDescription(
+        key="iccid",
+        translation_key="iccid",
+        icon="mdi:sim",
+        value_fn=lambda data: data.get("iccid") or data.get("ICCID"),
+    ),
+    SimbaseSensorEntityDescription(
         key="imei",
         translation_key="imei",
         value_fn=lambda data: data.get("imei"),

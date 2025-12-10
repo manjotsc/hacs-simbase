@@ -64,6 +64,9 @@
       "ip_address": {
         "name": "IP Address"
       },
+      "iccid": {
+        "name": "ICCID"
+      },
       "imei": {
         "name": "IMEI"
       },
