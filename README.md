@@ -4,122 +4,104 @@
 [![GitHub Release](https://img.shields.io/github/v/release/manjotsc/hacs-simbase)](https://github.com/manjotsc/hacs-simbase/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A Home Assistant custom integration for [Simbase](https://www.simbase.com/) IoT SIM card management. Monitor and control your IoT SIM cards directly from Home Assistant.
+Monitor and control your [Simbase](https://www.simbase.com/) IoT SIM cards directly from Home Assistant. Track data usage, costs, SMS metrics, and manage SIM activation from your dashboard.
 
----
-
-> ⚠️ **Disclaimer**  
-> This is an **unofficial, community-developed project** and is **not affiliated with, endorsed by, or supported by Simbase**.  
->  
-> All product names, logos, and trademarks belong to their respective owners. API usage is subject to Simbase’s terms and conditions.
-
----
+> **Note:** This is an unofficial, community-developed integration and is not affiliated with or endorsed by Simbase.
 
 ## Features
 
-- **SIM Card Monitoring** – Track data usage, status, costs, SMS counts, and more  
-- **Account Overview** – See totals across all SIM cards in one place  
-- **Activation Control** – Enable/disable individual SIMs or all SIMs at once  
-- **SMS Support** – Send SMS messages to your SIM cards  
-- **Configurable Sensors** – Choose which sensors to enable  
-- **Real-time Updates** – Configurable polling interval  
-
----
-
-## Screenshots
-
-*Coming soon*
-
----
+| Feature | Description |
+|---------|-------------|
+| SIM Monitoring | Track data usage, status, costs, and SMS counts |
+| Account Overview | View totals across all SIM cards |
+| Activation Control | Enable/disable SIMs individually or in bulk |
+| SMS Support | Send SMS messages to your SIM cards |
+| Configurable | Choose which sensors to enable |
+| Automations | Trigger automations based on SIM status |
 
 ## Installation
 
-### 🔧 HACS (Recommended)
+### HACS (Recommended)
 
-1. Open **HACS** in Home Assistant  
-2. Go to **Integrations**  
-3. Open **Menu → Custom repositories**  
-4. Add: https://github.com/manjotsc/hacs-simbase
-5. Choose category: **Integration**  
-6. Install **Simbase**  
-7. Restart Home Assistant  
+1. Open **HACS** in Home Assistant
+2. Go to **Integrations** → **Menu** (three dots) → **Custom repositories**
+3. Add `https://github.com/manjotsc/hacs-simbase` with category **Integration**
+4. Search for and install **Simbase**
+5. Restart Home Assistant
 
----
+### Manual
 
-### Manual Installation
-
-1. Download the latest release from [GitHub Releases](https://github.com/manjotsc/hacs-simbase/releases)
-2. Extract and copy `custom_components/simbase` folder to your Home Assistant `config/custom_components/` directory
-3. Restart Home Assistant  
-
----
+1. Download the [latest release](https://github.com/manjotsc/hacs-simbase/releases)
+2. Copy `custom_components/simbase` to your `config/custom_components/` directory
+3. Restart Home Assistant
 
 ## Configuration
 
-### API Key
+1. Get your API key from [Simbase Dashboard](https://dashboard.simbase.com/) → **Settings** → **API Key**
+2. In Home Assistant, go to **Settings** → **Devices & Services**
+3. Click **Add Integration** and search for **Simbase**
+4. Enter your API key and select your preferred sensors
 
-1. Log into your [Simbase Dashboard](https://dashboard.simbase.com/)  
-2. Go to **Settings → API Key**  
-3. Copy your API token  
+## Available Entities
 
----
+### Per-SIM Sensors
 
-### Adding the Integration
+| Sensor | Description |
+|--------|-------------|
+| Data Usage | Current month data consumption |
+| Status | SIM state (active/disabled/suspended) |
+| Monthly Cost | Current month costs |
+| SMS Sent/Received | Message counts |
+| Coverage Plan | Current plan |
+| Hardware | Device info |
+| IMEI | Device identifier |
+| MSISDN | Phone number |
+| IP Address | Assigned IP |
 
-1. Go to **Settings → Devices & Services**  
-2. Click **Add Integration**  
-3. Search for **Simbase**  
-4. Enter your API key  
-5. Select optional sensors and features  
+### Account Sensors
 
----
+| Sensor | Description |
+|--------|-------------|
+| Account Balance | Credit balance |
+| Total/Active/Inactive SIMs | SIM counts |
+| Total Data Usage | Aggregate data consumption |
+| Total Monthly Cost | Sum of all SIM costs |
+| Total SMS | Aggregate message counts |
 
-## Entities
+### Controls
 
-### Per-SIM Device
+| Entity | Description |
+|--------|-------------|
+| SIM Activation Switch | Enable/disable individual SIMs |
+| Activate All Button | Enable all SIMs at once |
+| Deactivate All Button | Disable all SIMs at once |
 
-Includes:  
-- Data usage  
-- Status  
-- Monthly cost  
-- SMS totals  
-- Coverage  
-- Hardware  
-- IMEI  
-- MSISDN  
-- Static IP (if available)  
+### Services
 
-Binary sensors:  
-- Online status  
+| Service | Description |
+|---------|-------------|
+| `simbase.activate_sim` | Activate a SIM by ICCID |
+| `simbase.deactivate_sim` | Deactivate a SIM by ICCID |
+| `simbase.send_sms` | Send SMS to a SIM |
 
-Controls:  
-- SIM activation switch  
+## Known Limitations
 
----
+The following sensors are **not available** due to Simbase API limitations:
 
-## Account Overview
-
-Global entities:  
-- Total SIM count  
-- Active SIMs  
-- Inactive SIMs  
-- Total data usage  
-- Total cost  
-- SMS metrics  
-
-Controls:  
-- Activate all SIMs  
-- Deactivate all SIMs  
-
----
+| Sensor | Reason |
+|--------|--------|
+| Network Operator | No network info in API |
+| Data Limit | Not provided by API |
+| Signal Strength | Not provided by API |
+| Connection Type | Not provided by API |
+| Data Limit Exceeded | Not provided by API |
+| Throttled Status | Not provided by API |
+| Roaming Status | Not provided by API |
 
 ## License
 
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
-## Trademark Notice
+---
 
-Simbase® and all related names are trademarks of their respective owners.  
-This project makes no claim to those marks.
-
-
+**Trademark Notice:** Simbase is a trademark of its respective owner. This project is not affiliated with Simbase.
