@@ -9,12 +9,39 @@
         }
       },
       "sensors": {
-        "title": "Select Entities",
-        "description": "Choose which sensors and controls to enable for your SIM cards.",
+        "title": "Configure Entities",
+        "description": "Select which entities to create for your SIM cards. You can change these later in the integration options.",
         "data": {
-          "enable_sensors": "Sensors",
-          "enable_binary_sensors": "Binary Sensors",
-          "enable_switch": "Enable Activation Switch"
+          "sensor_data_usage": "Data Usage",
+          "sensor_monthly_cost": "Monthly Cost",
+          "sensor_status": "Status",
+          "sensor_plan": "Coverage Plan",
+          "binary_online": "Online Status",
+          "sensor_sms_count": "SMS Total",
+          "sensor_sms_sent": "SMS Sent",
+          "sensor_sms_received": "SMS Received",
+          "sensor_iccid": "ICCID",
+          "sensor_imei": "IMEI",
+          "sensor_msisdn": "Phone Number",
+          "sensor_ip_address": "IP Address",
+          "sensor_hardware": "Hardware",
+          "enable_switch": "Activation Switch"
+        },
+        "data_description": {
+          "sensor_data_usage": "Current data usage for the billing period",
+          "sensor_monthly_cost": "Monthly cost of the SIM card",
+          "sensor_status": "Current SIM card status (active, inactive, suspended)",
+          "sensor_plan": "Coverage plan assigned to the SIM",
+          "binary_online": "Whether the SIM card is currently connected",
+          "sensor_sms_count": "Total SMS messages (sent + received)",
+          "sensor_sms_sent": "Number of SMS messages sent",
+          "sensor_sms_received": "Number of SMS messages received",
+          "sensor_iccid": "Integrated Circuit Card Identifier",
+          "sensor_imei": "International Mobile Equipment Identity",
+          "sensor_msisdn": "Phone number (MSISDN) of the SIM",
+          "sensor_ip_address": "Current IP address assigned to the SIM",
+          "sensor_hardware": "Hardware device the SIM is installed in",
+          "enable_switch": "Control to activate or deactivate SIM cards"
         }
       }
     },
@@ -31,12 +58,40 @@
     "step": {
       "init": {
         "title": "Simbase Options",
-        "description": "Configure update interval and select which entities to enable.",
+        "description": "Configure the integration settings and select which entities to enable.",
         "data": {
-          "scan_interval": "Update interval (seconds)",
-          "enable_sensors": "Sensors",
-          "enable_binary_sensors": "Binary Sensors",
-          "enable_switch": "Enable Activation Switch"
+          "scan_interval": "Update Interval",
+          "sensor_data_usage": "Data Usage",
+          "sensor_monthly_cost": "Monthly Cost",
+          "sensor_status": "Status",
+          "sensor_plan": "Coverage Plan",
+          "binary_online": "Online Status",
+          "sensor_sms_count": "SMS Total",
+          "sensor_sms_sent": "SMS Sent",
+          "sensor_sms_received": "SMS Received",
+          "sensor_iccid": "ICCID",
+          "sensor_imei": "IMEI",
+          "sensor_msisdn": "Phone Number",
+          "sensor_ip_address": "IP Address",
+          "sensor_hardware": "Hardware",
+          "enable_switch": "Activation Switch"
+        },
+        "data_description": {
+          "scan_interval": "How often to fetch data from Simbase (60-3600 seconds)",
+          "sensor_data_usage": "Current data usage for the billing period",
+          "sensor_monthly_cost": "Monthly cost of the SIM card",
+          "sensor_status": "Current SIM card status (active, inactive, suspended)",
+          "sensor_plan": "Coverage plan assigned to the SIM",
+          "binary_online": "Whether the SIM card is currently connected",
+          "sensor_sms_count": "Total SMS messages (sent + received)",
+          "sensor_sms_sent": "Number of SMS messages sent",
+          "sensor_sms_received": "Number of SMS messages received",
+          "sensor_iccid": "Integrated Circuit Card Identifier",
+          "sensor_imei": "International Mobile Equipment Identity",
+          "sensor_msisdn": "Phone number (MSISDN) of the SIM",
+          "sensor_ip_address": "Current IP address assigned to the SIM",
+          "sensor_hardware": "Hardware device the SIM is installed in",
+          "enable_switch": "Control to activate or deactivate SIM cards"
         }
       }
     }
