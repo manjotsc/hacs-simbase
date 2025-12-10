@@ -6,6 +6,7 @@ import logging
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_API_KEY, CONF_SCAN_INTERVAL, Platform
 from homeassistant.core import HomeAssistant, ServiceCall
+from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import SimbaseApiClient
@@ -15,7 +16,6 @@ from .const import (
     SERVICE_ACTIVATE_SIM,
     SERVICE_DEACTIVATE_SIM,
     SERVICE_SEND_SMS,
-    ATTR_ICCID,
 )
 from .coordinator import SimbaseDataUpdateCoordinator
 
@@ -72,12 +72,28 @@ async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
     await hass.config_entries.async_reload(entry.entry_id)
 
 
+def _get_iccid_from_device(hass: HomeAssistant, device_id: str) -> str | None:
+    """Get ICCID from device ID."""
+    device_registry = dr.async_get(hass)
+    device = device_registry.async_get(device_id)
+    if device:
+        for identifier in device.identifiers:
+            if identifier[0] == DOMAIN:
+                # The identifier is (DOMAIN, ICCID)
+                return identifier[1]
+    return None
+
+
 async def _async_setup_services(hass: HomeAssistant) -> None:
     """Set up Simbase services."""
 
     async def async_activate_sim(call: ServiceCall) -> None:
         """Activate a SIM card."""
-        iccid = call.data[ATTR_ICCID]
+        device_id = call.data["device_id"]
+        iccid = _get_iccid_from_device(hass, device_id)
+        if not iccid:
+            _LOGGER.error("Could not find ICCID for device %s", device_id)
+            return
         for entry_data in hass.data[DOMAIN].values():
             coordinator: SimbaseDataUpdateCoordinator = entry_data["coordinator"]
             if coordinator.get_simcard(iccid):
@@ -87,7 +103,11 @@ async def _async_setup_services(hass: HomeAssistant) -> None:
 
     async def async_deactivate_sim(call: ServiceCall) -> None:
         """Deactivate a SIM card."""
-        iccid = call.data[ATTR_ICCID]
+        device_id = call.data["device_id"]
+        iccid = _get_iccid_from_device(hass, device_id)
+        if not iccid:
+            _LOGGER.error("Could not find ICCID for device %s", device_id)
+            return
         for entry_data in hass.data[DOMAIN].values():
             coordinator: SimbaseDataUpdateCoordinator = entry_data["coordinator"]
             if coordinator.get_simcard(iccid):
@@ -97,8 +117,12 @@ async def _async_setup_services(hass: HomeAssistant) -> None:
 
     async def async_send_sms(call: ServiceCall) -> None:
         """Send SMS to a SIM card."""
-        iccid = call.data[ATTR_ICCID]
+        device_id = call.data["device_id"]
         message = call.data["message"]
+        iccid = _get_iccid_from_device(hass, device_id)
+        if not iccid:
+            _LOGGER.error("Could not find ICCID for device %s", device_id)
+            return
         for entry_data in hass.data[DOMAIN].values():
             coordinator: SimbaseDataUpdateCoordinator = entry_data["coordinator"]
             if coordinator.get_simcard(iccid):

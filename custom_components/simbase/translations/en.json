@@ -150,21 +150,21 @@
   "services": {
     "activate_sim": {
       "name": "Activate SIM",
-      "description": "Activate a SIM card by its ICCID.",
+      "description": "Activate a SIM card.",
       "fields": {
-        "iccid": {
-          "name": "ICCID",
-          "description": "The ICCID of the SIM card to activate"
+        "device_id": {
+          "name": "SIM Card",
+          "description": "The SIM card to activate"
         }
       }
     },
     "deactivate_sim": {
       "name": "Deactivate SIM",
-      "description": "Deactivate a SIM card by its ICCID.",
+      "description": "Deactivate a SIM card.",
       "fields": {
-        "iccid": {
-          "name": "ICCID",
-          "description": "The ICCID of the SIM card to deactivate"
+        "device_id": {
+          "name": "SIM Card",
+          "description": "The SIM card to deactivate"
         }
       }
     },
@@ -172,9 +172,9 @@
       "name": "Send SMS",
       "description": "Send an SMS message to a SIM card.",
       "fields": {
-        "iccid": {
-          "name": "ICCID",
-          "description": "The ICCID of the SIM card to send the SMS to"
+        "device_id": {
+          "name": "SIM Card",
+          "description": "The SIM card to send the SMS to"
         },
         "message": {
           "name": "Message",
