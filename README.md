@@ -1,7 +1,7 @@
 # Simbase IoT SIM Management for Home Assistant
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![GitHub Release](https://img.shields.io/github/v/release/manjotsc/hacs-simbase)](https://github.com/manjotsc/hacs-simbase/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/manjotsc/ha-simbase)](https://github.com/manjotsc/ha-simbase/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Monitor and control your [Simbase](https://www.simbase.com/) IoT SIM cards directly from Home Assistant. Track data usage, costs, SMS metrics, and manage SIM activation from your dashboard.
@@ -25,13 +25,13 @@ Monitor and control your [Simbase](https://www.simbase.com/) IoT SIM cards direc
 
 1. Open **HACS** in Home Assistant
 2. Go to **Integrations** → **Menu** (three dots) → **Custom repositories**
-3. Add `https://github.com/manjotsc/hacs-simbase` with category **Integration**
+3. Add `https://github.com/manjotsc/ha-simbase` with category **Integration**
 4. Search for and install **Simbase**
 5. Restart Home Assistant
 
 ### Manual
 
-1. Download the [latest release](https://github.com/manjotsc/hacs-simbase/releases)
+1. Download the [latest release](https://github.com/manjotsc/ha-simbase/releases)
 2. Copy `custom_components/simbase` to your `config/custom_components/` directory
 3. Restart Home Assistant
 
